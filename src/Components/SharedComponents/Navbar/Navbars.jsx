@@ -27,8 +27,6 @@ const Navbars = () => {
 
           </div>
 
-		  
-
           <ul
             className={`md:flex md:items-center  md:bg-inherit   md:pb-0 pb-12 absolute md:static text-[#089bab] bg-white md:z-auto z-[1] right-0 w-full h-screen md:h-full md:w-auto mt-2 md:pl-0 pl-5 transition-all duration-500 ease-in-out ${
               open ? "right-19" : "hidden"

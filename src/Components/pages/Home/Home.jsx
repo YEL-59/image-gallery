@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbars from "../../SharedComponents/Navbar/Navbars";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [navfix, setNavfix] = useState(false);
@@ -24,14 +25,10 @@ const Home = () => {
       </div>
 
       <div>
-        {/* <div>
-      <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 lg:font-extrabold lg:text-6xl lg:leading-none  lg:text-center xl:px-36 lg:mb-7">Build websites even faster with components on top of Tailwind CSS</h1>
-      <p className="mb-10 text-lg font-normal text-gray-500  lg:text-center lg:text-xl xl:px-60">Start developing with an open-source library of over 600+ UI components, sections, and pages built with the utility classes from Tailwind CSS and designed in Figma.</p>
-      <div className="flex flex-col mb-8 md:flex-row lg:justify-center"><a href="#" className="text-white bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-base px-6 py-2.5 text-center md:mr-5 mb-3 md:mb-0 inline-flex items-center justify-center">Get started</a><a href="#components" className="text-gray-600 bg-white-100 hover:bg-gray-100 hover:text-blue-600 border border-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700 font-medium rounded-lg text-base px-6 py-2.5 text-center inline-flex justify-center items-center"><svg className="w-3.5 h-3.5 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18"><path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"></path></svg><span className="ml-2">Explore components</span></a></div>
-        </div> */}
+       
         <section className="py-4  bg-[#8aaaaa] lg:pt-12">
           <div className="px-4 mx-auto max-w-8xl lg:px-4 lg:text-center">
-            <a
+            <Link  to={'/image_gallery'}
               className="inline-flex items-center justify-between px-1 py-1 pr-4 mb-5 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200"
               role="alert"
               href="/icons/"
@@ -57,24 +54,24 @@ const Home = () => {
                   d="m1 9 4-4-4-4"
                 ></path>
               </svg>
-            </a>
+            </Link>
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-700 lg:font-extrabold lg:text-6xl lg:leading-none  lg:text-center xl:px-36 lg:mb-7">
               Build Gallery even faster with components on top of This library
             </h1>
             <p className="mb-10 text-lg font-normal text-gray-500 dark:text-gray-400 lg:text-center lg:text-xl xl:px-60">
               Start developing with an open-source library of over 600+ UI
               components, sections, and pages built with the utility classes
-              from ArtHouse CSS and designed in Figma.
+              from ArtHouse CSS and designed by yel-59.
             </p>
             <div className="flex flex-col mb-8 md:flex-row lg:justify-center">
-              <a
-                href="#tofayel"
+              <Link
+              to={'/image_gallery'}
                 className="text-white bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-base px-6 py-2.5 text-center md:mr-5 mb-3 md:mb-0 inline-flex items-center justify-center"
               >
                 Get started
-              </a>
-              <a
-                href="#components"
+              </Link>
+              <Link
+               to={'/image_gallery'}
                 className="text-gray-600 bg-white-100 hover:bg-gray-100 hover:text-blue-600 border border-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700 font-medium rounded-lg text-base px-6 py-2.5 text-center inline-flex justify-center items-center"
               >
                 <svg
@@ -87,10 +84,10 @@ const Home = () => {
                   <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"></path>
                 </svg>
                 <span className="ml-2">Explore components</span>
-              </a>
+              </Link>
             </div>
-           
-            <iframe  src="https://www.youtube.com/embed/UTOBn3Cx5z8?si=bE0aRnDmprr9uVL9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen  className="relative  w-full max-w-4xl mx-auto mt-12 border border-gray-300 shadow-2xl rounded-3xl lg:mt-20 dark:border-gray-700 yt-video"></iframe>
+            
+            <iframe  src="https://www.youtube.com/embed/XhOQTxmxbnA?si=_AJtO3FZrzGJaw49" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen  className="relative  w-full max-w-4xl mx-auto mt-12 border border-gray-300 shadow-2xl rounded-3xl lg:mt-20 dark:border-gray-700 yt-video"></iframe>
           </div>
         </section>
 
@@ -101,7 +98,7 @@ const Home = () => {
             </h2>
             <p className="mb-4 text-base text-gray-500 md:mb-6 dark:text-gray-400 md:text-center md:text-xl lg:px-20 xl:px-56">
               Do you want to get notified when a new component is added to
-              Flowbite? Sign up for our newsletter and you will be among the
+              Arthouse? Sign up for our newsletter and you will be among the
               first to find out about new features, components, versions, and
               tools.
             </p>

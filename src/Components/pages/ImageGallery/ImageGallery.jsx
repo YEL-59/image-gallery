@@ -1,153 +1,148 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+import { v4 as uuidv4 } from "uuid";
+import HiddenNavbar from "./HiddenNavbar/HiddenNavbar";
+import MainLayout from "./MainLayout/MainLayout";
 import Navbars from "../../SharedComponents/Navbar/Navbars";
-import { motion } from "framer-motion";
-import images1 from "../images/image-1.webp";
-import images2 from "../images/image-2.webp";
-import images3 from "../images/image-3.webp";
-import images4 from "../images/image-4.webp";
-import images5 from "../images/image-5.webp";
-import images6 from "../images/image-6.webp";
-import images7 from "../images/image-7.webp";
-import images8 from "../images/image-8.webp";
-import images9 from "../images/image-9.webp";
-// import images10 from '../images/image-10.webp'
-// import images11 from '../images/image-11.webp'
-// import images12 from '../images/image-12.webp'
 
 const ImageGallery = () => {
-  const [navfix, setNavfix] = useState(false);
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [fileArr, setFileArr] = useState([
+    {
+      id: 1,
+      fileUrl: "/public/images/image-1.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 2,
+      fileUrl: "/public/images/image-2.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 3,
+      fileUrl: "/public/images/image-3.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 4,
+      fileUrl: "/public/images/image-4.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 5,
+      fileUrl: "/images/image-5.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 6,
+      fileUrl: "/public/images/image-6.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 7,
+      fileUrl: "/public/images/image-7.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 8,
+      fileUrl: "/public/images/image-8.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 9,
+      fileUrl: "/public/images/image-9.webp",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 10,
+      fileUrl: "/public/images/image-10.jpeg",
+      detail: "",
+      checked: false,
+    },
+    {
+      id: 11,
+      fileUrl: "/public/images/image-11.jpeg",
+      detail: "",
+      checked: false,
+    },
+  ]);
 
-  useEffect(() => {
-    function handleScroll() {
-      if (window.scrollY >= 70) {
-        setNavfix(true);
-      } else {
-        setNavfix(false);
-      }
+  const onInputClick = (event) => {
+    event.target.value = "";
+  };
+
+  const onFilesAdded = (e) => {
+    let fileList = [...fileArr];
+    let file = URL.createObjectURL(e.target.files[0]);
+    let fileDetail = {
+      id: uuidv4(),
+      fileUrl: file,
+      checked: false,
+      detail: e.target.files[0],
+    };
+    fileList = [fileDetail, ...fileList];
+    setFileArr(fileList);
+  };
+
+  const filteredObjects = fileArr.filter((obj) => obj.checked === true);
+
+  const handleDelete = (selectedFiles) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete ${selectedFiles.length} item${
+        selectedFiles.length > 1 ? "s" : ""
+      }?`
+    );
+    if (confirmDelete) {
+      const newArr = fileArr.filter((obj) => obj.checked !== true);
+      setFileArr(newArr);
+      window.alert(
+        `You have successfully deleted ${selectedFiles.length} item${
+          selectedFiles.length > 1 ? "s" : ""
+        }.`
+      );
     }
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []); // Cleanup scroll event listener on component unmount
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const handleCheckboxChange = (imageName) => {
-    setSelectedImages((prevSelectedImages) => {
-      if (prevSelectedImages.includes(imageName)) {
-        return prevSelectedImages.filter((name) => name !== imageName);
-      } else {
-        return [...prevSelectedImages, imageName];
-      }
-    });
   };
 
 
+  const [navfix, setNavfix] = useState(false);
 
-
-  const handleDelete = () => {
-    setSelectedImages([]);
-    setRandomColor(getRandomColor());
-  };
-
-  const getRandomColor = () => {
-    const colors = ["red", "green", "blue", "yellow", "purple", "pink"];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
-
-  const [randomColor, setRandomColor] = useState(getRandomColor());
+  function setFixed() {
+    if (window.scrollY >= 70) {
+      setNavfix(true);
+      //console.log(scrollY)
+    } else {
+      setNavfix(false);
+    }
+  }
+  window.addEventListener("scroll", setFixed);
   return (
     <>
+      <div className="bg-gray-100">
       <div
         className={`z-10 container-xl mx-auto xl:px-56 ${
-          navfix ? "top-0 h-[8%] w-full fixed bg-white" : ""
+          navfix ? " top-0 h-[8%] w-full fixed bg-white " : ""
         }`}
       >
         <Navbars />
       </div>
-      <div>
-        <p>
-          Selected: {selectedImages.length}
-          {selectedImages.length === 1 ? " item" : " items"} selected
-        </p>
-        <div>
-          {selectedImages.map((imageName, index) => (
-            <div key={index} className="mr-2 relative">
-              <span>{imageName}</span>
-              <button
-                className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
-                onClick={() => handleDelete(imageName)}
-              >
-                X
-              </button>
-            </div>
-          ))}
-        </div>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-          onClick={handleDelete}
-        >
-          Delete Selected
-        </button>
-      </div>
-
-      <div className="grid grid-rows-3 grid-flow-col gap-4 bg-${randomColor}-200">
-        <div className="row-span-2 col-span-2 bg-blue-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6"  onChange={() => handleCheckboxChange("image-1.webp")} />
-          <img className="h-full" src={images1} alt="" />
-        </div>
-        <div className=" bg-green-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6"  onChange={() => handleCheckboxChange("image-2.webp")}/>
-          <img className="h-full" src={images2} alt="" />
-        </div>
-        <div className=" bg-yellow-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-3.webp")}/>
-          <img className="h-full" src={images3} alt="" />
-        </div>
-        <div className=" bg-pink-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-4.webp")}/>
-          <img className="h-full" src={images4} alt="" />
-        </div>
-        <div className=" bg-purple-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-5.webp")}/>
-          <img className="h-full" src={images5} alt="" />
-        </div>
-        <div className="bg-indigo-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-6.webp")}/>
-          <img className="h-full" src={images6} alt="" />
-        </div>
-        <div className="bg-red-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-7.webp")}/>
-          <img className="h-full" src={images6} alt="" />
-        </div>
-        <div className="bg-teal-200 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-8.webp")}/>
-          <img className="h-full" src={images6} alt="" />
-        </div>
-        <div className="bg-blue-300 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-9.webp")}/>
-          <img className="h-full" src={images6} alt="" />
-        </div>
-        <div className="bg-green-300 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-10.webp")}/>
-          <img className="h-full" src={images6} alt="" />
-        </div>
-        <div className="bg-yellow-300 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" onChange={() => handleCheckboxChange("image-11.webp")}/>
-          <img className="h-full" src={images6} alt="" />
-        </div>
-        <div className="bg-pink-300 p-4 relative">
-        <input type="checkbox" className="absolute top-6 left-6" />
-          <img className="h-full" src={images6} alt="" />
-        </div>
+        <HiddenNavbar
+          handleDelete={handleDelete}
+          filteredObjects={filteredObjects}
+        />
+        <MainLayout
+          fileArr={fileArr}
+          setFileArr={setFileArr}
+          onInputClick={onInputClick}
+          onFilesAdded={onFilesAdded}
+        />
       </div>
     </>
   );
